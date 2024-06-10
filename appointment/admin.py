@@ -23,6 +23,5 @@ class AppointmentAdmin(admin.ModelAdmin):
             email = EmailMultiAlternatives(email_subject, '', to=[obj.client.user.email])
             email.attach_alternative(email_body, 'text/html')
             email.send()
-            print('Done!')
 
 admin.site.register(models.Appointment, AppointmentAdmin)

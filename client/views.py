@@ -35,11 +35,8 @@ class UserRegistrationApiView(APIView):
 
         if serializer.is_valid():
             user= serializer.save()
-            print(user)
             token = default_token_generator.make_token(user)
-            print('Token :', token)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
-            print('UID:',uid)
             confirm_link = f"http://127.0.0.1:8000/clients/active/{uid}/{token}"
             email_subject = "Confirm Your Email"
             email_body = render_to_string('confirm_email.html',{'confirm_link' : confirm_link})
