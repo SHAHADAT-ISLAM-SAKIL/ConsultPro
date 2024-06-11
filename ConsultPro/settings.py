@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS = ['https://consultpro.onrender.com', 'http://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://consultpro.onrender.com','http://127.0.0.1']
 
 # Application definition
 
@@ -63,7 +63,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ConsultPro.urls'
-CORS_ORIGIN_ALLOW_ALL = True
+
+# CORS settings
+CORS_ORIGIN_ALLOW_ALL = True  # Allow all origins, useful for development
 CSRF_TRUSTED_ORIGINS = ['https://consultpro.onrender.com']
 
 TEMPLATES = [
@@ -143,6 +145,7 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True

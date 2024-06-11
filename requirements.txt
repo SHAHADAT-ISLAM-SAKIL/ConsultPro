@@ -1,10 +1,10 @@
 asgiref
-beautifulsoup4     
+beautifulsoup4
 certifi
-charset-normalizer 
+charset-normalizer
 click
 colorama
-crispy-bootstrap5  
+crispy-bootstrap5
 cssselect
 decorator
 distlib
@@ -12,7 +12,7 @@ dj-database-url
 Django
 django-cors-headers
 django-crispy-forms
-django-email       
+django-email
 django-environ
 django-filter
 djangorestframework
