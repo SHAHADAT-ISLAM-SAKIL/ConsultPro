@@ -44,6 +44,9 @@ class ConsulterViewset(viewsets.ModelViewSet):
     pagination_class = ConsulterPagination  
     queryset = models.Consulter.objects.all()
     serializer_class = serializers.ConsulterSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['user__first_name', 'user__email', 'designation__name', 'specialization__name']
+
 class ReviewForspecificConsaltent(filters.BaseFilterBackend):
     def filter_queryset(self, request, query_set, view):
         consultant_id = request.query_params.get("consultant_id")
