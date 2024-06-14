@@ -22,6 +22,8 @@ from django.contrib.auth import authenticate, login,logout
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
+
+
 class ClientViewset(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = models.Client.objects.all()
@@ -50,15 +52,15 @@ def activate(request, uid64, token):
     try:
         uid = urlsafe_base64_decode(uid64).decode()
         user = User._default_manager.get(pk=uid)
-    except(User.DoesNotExist):
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
-    
-    if user is not None and default_token_generator.check_token(user,token):
+
+    if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        return redirect('login')
+        return redirect('login')  # Assuming 'login' is the name of your login URL pattern
     else:
-        return redirect('register')
+        return redirect('register') 
     
     
 class UserLoginApiView(APIView):

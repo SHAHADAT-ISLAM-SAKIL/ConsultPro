@@ -17,7 +17,7 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         if client_id:
             queryset = queryset.filter(client_id=client_id)
      
-            
+ 
         return queryset
     
     def perform_create(self, serializer):
