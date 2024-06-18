@@ -28,6 +28,16 @@ class ClientViewset(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = models.Client.objects.all()
     serializer_class = serializers.ClientSerializer
+    def get_queryset(self):
+ 
+        queryset = super().get_queryset()
+        print(self.request.query_params)
+        user_id = self.request.query_params.get('user_id')
+       
+        if user_id:
+            queryset = queryset.filter(user_id=user_id)
+     
+        return queryset
     
 class UserRegistrationApiView(APIView):
     serializer_class = serializers.RegistrationSerializer
@@ -39,7 +49,7 @@ class UserRegistrationApiView(APIView):
             user= serializer.save()
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
-            confirm_link = f"http://127.0.0.1:8000/clients/active/{uid}/{token}"
+            confirm_link = f"https://consultpro.onrender.com//clients/active/{uid}/{token}"
             email_subject = "Confirm Your Email"
             email_body = render_to_string('confirm_email.html',{'confirm_link' : confirm_link})
             email = EmailMultiAlternatives(email_subject,'', to=[user.email])
