@@ -46,7 +46,11 @@ class ConsulterViewset(viewsets.ModelViewSet):
     serializer_class = serializers.ConsulterSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['user__first_name', 'user__email', 'designation__name', 'specialization__name']
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> origin/main
 class ReviewForspecificConsaltent(filters.BaseFilterBackend):
     def filter_queryset(self, request, query_set, view):
         consultant_id = request.query_params.get("consultant_id")
